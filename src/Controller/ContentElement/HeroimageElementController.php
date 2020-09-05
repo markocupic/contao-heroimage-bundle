@@ -19,6 +19,7 @@ namespace Markocupic\ContaoHeroimageBundle\Controller\ContentElement;
 use Contao\ContentModel;
 use Contao\Controller;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\ServiceAnnotation\ContentElement;
 use Contao\FilesModel;
 use Contao\StringUtil;
@@ -36,14 +37,14 @@ class HeroimageElementController extends AbstractContentElementController
 {
 
     /**
-     * <?= $this->frontendmoduleclassname ?> constructor.
+     * HeroimageElementController constructor.
      *
-     * @param SessionInterface $session
+     * @param ContaoFramework $framework
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(ContaoFramework $framework)
     {
 
-        $this->session = $session;
+        $this->framework = $framework;
     }
 
     /**
