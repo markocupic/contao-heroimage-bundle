@@ -32,7 +32,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package Markocupic\ContaoHeroimageBundle\Controller\ContentElement
  */
-class MyContentElementController extends AbstractContentElementController
+class HeroimageElementController extends AbstractContentElementController
 {
 
     /**
