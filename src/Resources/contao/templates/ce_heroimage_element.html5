@@ -1,0 +1,27 @@
+<div class="<?= $this->class ?> block <?= $this->heroContentboxTextAlign ?>"<?= $this->cssID ?>>
+    <div class="heroimage-wrapper"<?php if ($this->backgroundImage != ''): ?> style="background-image:<?= $this->backgroundImage ?>; background-color:#<?= $this->heroImageBackgroundColor ?>"<?php endif; ?>>
+        <div class="heroimage-background-overlay" data-opacity="<?= $this->heroContentboxOpacity ?>">
+            <div style="z-index: 10" class="heroimage-content-box">
+                <?php if ($this->heroImageHeadline): ?>
+                <div class="heroimage-headline-box">
+                    <h1 class="display-4"><?= $this->heroImageHeadline ?></h1>
+                </div>
+                <?php endif; ?>
+                <?php if ($this->heroImageText): ?>
+                <div class="lead heroimage-text-box">
+                    <?= $this->heroImageText ?>
+                </div>
+                <?php endif; ?>
+
+                <?php if ($this->heroImageButtonText): ?>
+                <div class="heroimage-button-box">
+                    <a href="<?= $this->heroImageButtonJumpTo ?>" role="button" tabindex="0" aria-pressed="false"
+                       class="btn<?php if ($this->heroImageButtonClass): ?> <?= $this->heroImageButtonClass ?><?php endif; ?>">
+                        <?= $this->heroImageButtonText ?>
+                    </a>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

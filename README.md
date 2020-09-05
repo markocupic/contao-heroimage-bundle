@@ -1,2 +1,5 @@
-# contao-heroimage-bundle
- Add a heroimage as a content element to contao.
+![Alt text](src/Resources/public/logo.png?raw=true "logo")
+
+
+# Welcome to Heroimage
+This bundle is still under construction.
