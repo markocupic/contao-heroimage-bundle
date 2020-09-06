@@ -1,0 +1,308 @@
+.ce_heroimage_element .heroimage-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    background-color: #292b2c;
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover;
+    background-position: center top;
+    display: flex !important;
+    min-height: 500px;
+}
+
+/** Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .ce_heroimage_element .heroimage-wrapper {
+        min-height: 500px;
+    }
+}
+
+/** Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .ce_heroimage_element .heroimage-wrapper {
+        min-height: 700px;
+    }
+}
+
+/** Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .ce_heroimage_element .heroimage-wrapper {
+        min-height: 1080px;
+    }
+}
+
+/** Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .ce_heroimage_element .heroimage-wrapper {
+
+        min-height: 1080px;
+    }
+}
+
+
+.ce_heroimage_element .heroimage-background-overlay {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.ce_heroimage_element .heroimage-background-overlay:after {
+    content: "";
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #000000;
+    opacity: 0;
+}
+
+/** Opacity is defined in the data-attribute of .heroimage-background-overlay **/
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.1"]:after {
+    opacity: 0.1;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.2"]:after {
+    opacity: 0.2;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.3"]:after {
+    opacity: 0.3;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.4"]:after {
+    opacity: 0.4;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.5"]:after {
+    opacity: 0.5;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.6"]:after {
+    opacity: 0.6;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.7"]:after {
+    opacity: 0.7;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.8"]:after {
+    opacity: 0.8;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="0.9"]:after {
+    opacity: 0.9;
+}
+
+.ce_heroimage_element .heroimage-background-overlay[data-opacity="1"]:after {
+    opacity: 1;
+}
+
+.ce_heroimage_element .heroimage-background-overlay {
+    justify-content: flex-start;
+}
+
+.ce_heroimage_element.align-left .heroimage-background-overlay {
+    justify-content: flex-start;
+}
+
+.ce_heroimage_element.align-right .heroimage-background-overlay {
+    justify-content: flex-end;
+}
+
+.ce_heroimage_element.align-center .heroimage-background-overlay {
+    justify-content: center;
+}
+
+.ce_heroimage_element .heroimage-background-overlay {
+    justify-content: center;
+}
+
+.ce_heroimage_element .heroimage-content-box {
+    width: 100%;
+    padding: 1rem 4rem;
+    background-color: transparent;
+    z-index: 10;
+}
+
+/** Headline **/
+.ce_heroimage_element .heroimage-headline-box > * {
+    font-size: 35px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 51px;
+}
+
+/** Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 35px;
+        line-height: 1.2;
+    }
+}
+
+/** Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 50px;
+        line-height: 1.2;
+    }
+}
+
+/** Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 60px;
+        line-height: 1.2;
+    }
+}
+
+/** Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 60px;
+        line-height: 1.2;
+    }
+}
+
+
+@media #{$lg} {
+    font-size:
+
+60px
+
+;
+    line-height:
+
+1.2;
+}
+
+@media #{$md} {
+    font-size:
+
+50px
+
+;
+    line-height:
+
+1.2;
+}
+
+@media #{$sm} {
+    font-size:
+
+35px
+
+;
+    line-height:
+
+1.2;
+}
+
+@media #{$xs} {
+    font-size:
+
+27px
+
+;
+    line-height:
+
+1.2;
+}
+
+}
+
+.ce_heroimage_element.align-right .heroimage-headline-box > *, .ce_heroimage_element.align-right .heroimage-text-box > *, .ce_heroimage_element.align-right .heroimage-button-box {
+    text-align: right;
+}
+
+.ce_heroimage_element.align-left .heroimage-headline-box > *, .ce_heroimage_element.align-left .heroimage-text-box > *, .ce_heroimage_element.align-left .heroimage-button-box {
+    text-align: left;
+}
+
+.ce_heroimage_element.align-center .heroimage-headline-box > *, .ce_heroimage_element.align-center .heroimage-text-box > *, .ce_heroimage_element.align-center .heroimage-button-box {
+    text-align: center;
+}
+
+.ce_heroimage_element .heroimage-text-box > p {
+    color: #fff;
+    font-weight: normal;
+}
+
+.ce_heroimage_element .heroimage-button-box .btn {
+    background-color: #0082c7;
+    color: #ffffff;
+    margin-top: 2rem;
+    border-color: transparent;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 2px;
+}
+
+@media (min-width: 48em) {
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 4rem;
+        line-height: 6rem;
+    }
+
+    .ce_heroimage_element .heroimage-headline-box {
+        margin-bottom: 2rem;
+    }
+
+    .ce_heroimage_element .heroimage-content-box {
+        padding: 1rem 5rem;
+    }
+
+    .ce_heroimage_element .heroimage-button-box {
+
+        margin-top: 3rem;
+    }
+}
+
+@media (min-width: 90em) {
+    .ce_heroimage_element .heroimage-content-box {
+        padding: 1rem 6rem;
+    }
+
+    .ce_heroimage_element .heroimage-headline-box > * {
+        font-size: 3.5rem;
+        line-height: 5.2rem;
+    }
+
+    .ce_heroimage_element .heroimage-headline-box {
+        margin-bottom: 3rem;
+    }
+
+    .ce_heroimage_element .heroimage-text-box > p, .ce_heroimage_element .heroimage-button-box .btn {
+        font-size: 1.5rem;
+        line-height: 2.75rem;
+    }
+
+    .ce_heroimage_element .heroimage-button-box {
+
+        margin-top: 4rem;
+    }
+}
+
+@media (min-width: 120em) {
+    .ce_heroimage_element .heroimage-content-box {
+        padding: 1rem 14rem;
+        width: 70%;
+    }
+}
+
+
+
+
+
+
+

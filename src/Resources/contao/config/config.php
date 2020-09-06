@@ -11,4 +11,3 @@
  *
  */
 
-$GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaoheroimage/stylesheet.css';

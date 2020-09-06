@@ -74,9 +74,8 @@ class HeroimageElementController extends AbstractContentElementController
 
         if ($hasValidImage)
         {
-            Controller::addImageToTemplate($template, $model->arrData, null, null, $objFile);
+            Controller::addImageToTemplate($template, $model->row(), null, null, $objFile);
         }
-
         $model->heroImageText = StringUtil::toHtml5($model->heroImageText);
 
 
@@ -88,7 +87,8 @@ class HeroimageElementController extends AbstractContentElementController
         }
 
         $template->heroImageText = StringUtil::encodeEmail($model->heroImageText);
-        $template->heroImageButtonJumpTo = $model->heroImageButtonJumpTo;
+
+        $template->href = Controller::replaceInsertTags($model->heroImageButtonJumpTo);
 
         return $template->getResponse();
     }

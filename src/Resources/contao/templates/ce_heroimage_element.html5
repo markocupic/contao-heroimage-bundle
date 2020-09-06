@@ -1,21 +1,31 @@
+<?php $GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaoheroimage/stylesheet.css'; ?>
+
 <div class="<?= $this->class ?> block <?= $this->heroContentboxTextAlign ?>"<?= $this->cssID ?>>
     <div class="heroimage-wrapper"<?php if ($this->backgroundImage != ''): ?> style="background-image:<?= $this->backgroundImage ?>; background-color:#<?= $this->heroImageBackgroundColor ?>"<?php endif; ?>>
         <div class="heroimage-background-overlay" data-opacity="<?= $this->heroContentboxOpacity ?>">
-            <div style="z-index: 10" class="heroimage-content-box">
+            <div class="heroimage-content-box">
+
+                <?php if ($this->heroImagePreHeadline): ?>
+                <div class="heroimage-pre-headline-box">
+                    <h3 class="display-4"><?= $this->heroImagePreHeadline ?></h3>
+                </div>
+                <?php endif; ?>
+
                 <?php if ($this->heroImageHeadline): ?>
                 <div class="heroimage-headline-box">
                     <h1 class="display-4"><?= $this->heroImageHeadline ?></h1>
                 </div>
                 <?php endif; ?>
+
                 <?php if ($this->heroImageText): ?>
                 <div class="lead heroimage-text-box">
                     <?= $this->heroImageText ?>
                 </div>
                 <?php endif; ?>
 
-                <?php if ($this->heroImageButtonText): ?>
+                <?php if ($this->href): ?>
                 <div class="heroimage-button-box">
-                    <a href="<?= $this->heroImageButtonJumpTo ?>" role="button" tabindex="0" aria-pressed="false"
+                    <a href="<?= $this->href ?>" role="button" tabindex="0" aria-pressed="false"
                        class="btn<?php if ($this->heroImageButtonClass): ?> <?= $this->heroImageButtonClass ?><?php endif; ?>">
                         <?= $this->heroImageButtonText ?>
                     </a>
