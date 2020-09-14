@@ -6,8 +6,8 @@
             <div class="heroimage-content-box">
 
                 <?php if ($this->heroImagePreHeadline): ?>
-                <div class="heroimage-pre-headline-box">
-                    <h3 class="display-4"><?= $this->heroImagePreHeadline ?></h3>
+                <div class="heroimage-preline-box">
+                    <h3 class="display-4"><?= $this->heroImagePreline ?></h3>
                 </div>
                 <?php endif; ?>
 
@@ -23,7 +23,7 @@
                 </div>
                 <?php endif; ?>
 
-                <?php if ($this->href): ?>
+                <?php if ($this->href && $this->heroImageButtonText): ?>
                 <div class="heroimage-button-box">
                     <a href="<?= $this->href ?>" role="button" tabindex="0" aria-pressed="false"
                        class="btn<?php if ($this->heroImageButtonClass): ?> <?= $this->heroImageButtonClass ?><?php endif; ?>">

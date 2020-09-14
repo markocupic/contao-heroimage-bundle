@@ -19,7 +19,7 @@ $GLOBALS['TL_LANG']['tl_content']['hero_image_background_legend'] = 'Hintergrund
 $GLOBALS['TL_LANG']['tl_content']['hero_content_box_legend'] = 'Content-Box-Einstellungen';
 
 // Fields
-$GLOBALS['TL_LANG']['tl_content']['heroImagePreHeadline'] = ['Pre-Headline', 'Fügen Sie eine Pre-Headline (Dachüberschrift) hinzu.'];
+$GLOBALS['TL_LANG']['tl_content']['heroImagePreline'] = ['Preline', 'Fügen Sie eine Preline (Dachüberschrift) hinzu.'];
 $GLOBALS['TL_LANG']['tl_content']['heroImageHeadline'] = ['Überschrift', 'Fügen Sie eine Überschrift hinzu.'];
 $GLOBALS['TL_LANG']['tl_content']['heroImageText'] = ['Text', 'Fügen Sie einen Text hinzu.'];
 $GLOBALS['TL_LANG']['tl_content']['addHeroImage'] = ['Hero Hintergrundbild hinzufügen', 'FÜgen Sie ein Hero Hintergrundbild hinzu.'];

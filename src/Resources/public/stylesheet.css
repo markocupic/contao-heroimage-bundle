@@ -21,14 +21,14 @@
 /** Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .ce_heroimage_element .heroimage-wrapper {
-        min-height: 700px;
+        min-height: 600px;
     }
 }
 
 /** Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .ce_heroimage_element .heroimage-wrapper {
-        min-height: 1080px;
+        min-height: 700px;
     }
 }
 
@@ -36,7 +36,7 @@
 @media (min-width: 1200px) {
     .ce_heroimage_element .heroimage-wrapper {
 
-        min-height: 1080px;
+        min-height: 700px;
     }
 }
 

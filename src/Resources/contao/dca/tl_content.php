@@ -15,7 +15,7 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['heroimage_element'] = 'name,type,heroImagePreHeadline,heroImageHeadline;{hero_image_legend:hide},addHeroImage;{template_legend:hide},customTpl;{text_legend},heroImageText;{hero_image_button_legend},heroImageButtonText,heroImageButtonClass,heroImageButtonJumpTo;{hero_image_background_legend:hide],heroImageBackgroundColor;{hero_content_box_legend},heroContentboxTextAlign,heroContentboxOpacity;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['heroimage_element'] = 'name,type,heroImagePreline,heroImageHeadline;{hero_image_legend:hide},addHeroImage;{template_legend:hide},customTpl;{text_legend},heroImageText;{hero_image_button_legend},heroImageButtonText,heroImageButtonClass,heroImageButtonJumpTo;{hero_image_background_legend:hide],heroImageBackgroundColor;{hero_content_box_legend},heroContentboxTextAlign,heroContentboxOpacity;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['addHeroImage'] = 'singleSRC,size';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'addHeroImage';
 
@@ -23,8 +23,8 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'addHeroImage';
  * Add fields to tl_content
  */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['heroImagePreHeadline'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImagePreHeadline'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['heroImagePreline'] = [
+    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImagePreline'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
