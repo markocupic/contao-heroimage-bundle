@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of Contao Hero Image Bundle.
  *
@@ -12,13 +10,9 @@ declare(strict_types=1);
  * @link https://github.com/markocupic/contao-heroimage-bundle
  */
 
-namespace Markocupic\ContaoHeroimageBundle;
-
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 /**
- * Class MarkocupicContaoHeroimageBundle.
+ * Content element
  */
-class MarkocupicContaoHeroimageBundle extends Bundle
-{
-}
+$GLOBALS['TL_LANG']['CTE']['image_elements'] = 'Bild Elemente';
+$GLOBALS['TL_LANG']['CTE']['heroimage_element'] = ['Hero Image (Bannerbild mit Headline, Text und Link-Button)', 'Fügen Sie ein Hero-Image mit Headline, Text und Link-Button ein.'];
+

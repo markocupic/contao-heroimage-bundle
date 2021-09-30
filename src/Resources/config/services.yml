@@ -1,5 +1,5 @@
 services:
-    # Contao content element Markocupic\ContaoHeroimageBundle\Controller\ContentElement\HeroimageElementController
+    # Contao content element
     Markocupic\ContaoHeroimageBundle\Controller\ContentElement\HeroimageElementController:
         arguments:
             - '@contao.framework'

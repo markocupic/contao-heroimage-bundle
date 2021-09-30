@@ -1,5 +1,6 @@
-![Alt text](src/Resources/public/logo.png?raw=true "logo")
+![Alt text](docs/logo.png?raw=true "logo")
 
 
-# Welcome to Heroimage
-This bundle is still under construction.
+# Welcome to Heroimage for Contao CMS
+
+![Alt text](docs/hero_screenshot.jpg?raw=true "screener")

@@ -1,17 +1,16 @@
 <?php
 
-/**
- * This file is part of a markocupic Contao Bundle.
- *
- * (c) Marko Cupic 2020 <m.cupic@gmx.ch>
- * @author     Marko Cupic
- * @package    Heroimage
- * @license    MIT
- * @see        https://github.com/markocupic/contao-heroimage-bundle
- *
- */
-
 declare(strict_types=1);
+
+/*
+ * This file is part of Contao Hero Image Bundle.
+ *
+ * (c) Marko Cupic 2021 <m.cupic@gmx.ch>
+ * @license MIT
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ * @link https://github.com/markocupic/contao-heroimage-bundle
+ */
 
 namespace Markocupic\ContaoHeroimageBundle\DependencyInjection;
 
@@ -21,28 +20,20 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Class MarkocupicContaoHeroimageExtension
- *
- * @package Markocupic\ContaoHeroimageBundle\DependencyInjection
+ * Class MarkocupicContaoHeroimageExtension.
  */
 class MarkocupicContaoHeroimageExtension extends Extension
 {
-
     /**
-     * @param array $configs
-     * @param ContainerBuilder $container
      * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
+            new FileLocator(__DIR__.'/../Resources/config')
         );
 
-        $loader->load('parameters.yml');
         $loader->load('services.yml');
-        $loader->load('listener.yml');
     }
 }

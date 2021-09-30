@@ -1,7 +1,7 @@
 <?php $GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaoheroimage/stylesheet.css'; ?>
 
 <div class="<?= $this->class ?> block <?= $this->heroContentboxTextAlign ?>"<?= $this->cssID ?>>
-    <div class="heroimage-wrapper"<?php if ($this->backgroundImage != ''): ?> style="background-image:<?= $this->backgroundImage ?>; background-color:#<?= $this->heroImageBackgroundColor ?>"<?php endif; ?>>
+    <div class="heroimage-wrapper"<?php if ('' != $this->backgroundImage): ?> style="background-image:<?= $this->backgroundImage ?>; background-color:#<?= $this->heroImageBackgroundColor ?>"<?php endif; ?>>
         <div class="heroimage-background-overlay" data-opacity="<?= $this->heroContentboxOpacity ?>">
             <div class="heroimage-content-box">
 
