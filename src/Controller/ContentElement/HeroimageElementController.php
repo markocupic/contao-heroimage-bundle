@@ -39,15 +39,7 @@ class HeroimageElementController extends AbstractContentElementController
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
     {
         // Add the CSS classes
-        $template->class = implode(
-            ' ',
-            array_filter(
-                explode(
-                    ' ',
-                    $template->class.' '.$model->heroContentboxTextAlign,
-                )
-            )
-        );
+        $template->class = implode(' ', array_filter(array_merge([$template->class ?? ''], [$model->heroContentboxTextAlign ?? ''])));
 
         // Add the button classes
         $template->heroImageButtonClass = !empty($model->heroImageButtonClass) ? ' '.trim($model->heroImageButtonClass) : '';

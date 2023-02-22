@@ -1,8 +1,5 @@
 {% do addCssResource('bundles/markocupiccontaoheroimage/css/style.css|static') %}
-
-{% extends '@Contao/block_searchable' %}
-
-{% block content %}
+<div class="{{ class|trim }} block">
 
     <div class="heroimage-wrapper"{{ backgroundStyle|raw }}>
         <div class="heroimage-background-overlay" data-opacity="{{ heroContentboxOpacity }}">
@@ -36,5 +33,4 @@
             </div>
         </div>
     </div>
-
-{% endblock %}
+</div>
