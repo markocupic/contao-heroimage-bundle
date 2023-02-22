@@ -33,21 +33,39 @@ class HeroimageElementController extends AbstractContentElementController
     public function __construct(
         private readonly Studio $contaoImageStudio,
         private readonly InsertTagParser $insertTagParser,
-        private readonly string $projectDir,
     ) {
     }
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
     {
+        // Add the CSS classes
+        $template->class = implode(
+            ' ',
+            array_filter(
+                explode(
+                    ' ',
+                    $template->class.' '.$model->heroContentboxTextAlign,
+                )
+            )
+        );
+
+        // Add the button classes
+        $template->heroImageButtonClass = !empty($model->heroImageButtonClass) ? ' '.trim($model->heroImageButtonClass) : '';
+
+        // Add the background-styles
+        $arrStyles = [];
+
+        if (!empty($model->heroImageBackgroundColor)) {
+            $arrStyles[] = sprintf('background-color:#%s', $model->heroImageBackgroundColor);
+        }
+
+        // Add a background-image
         $template->backgroundImage = 'none';
 
-        // Add an image as background-image
         if ($model->addHeroImage) {
-            $objFile = FilesModel::findByUuid($model->singleSRC);
+            $objFilesModel = FilesModel::findByUuid($model->singleSRC);
 
-            if (null !== $objFile && is_file($this->projectDir.'/'.$objFile->path)) {
-                $objFilesModel = $objFile;
-
+            if (null !== $objFilesModel && is_file($objFilesModel->getAbsolutePath())) {
                 $figure = $this->contaoImageStudio
                     ->createFigureBuilder()
                     ->from($objFilesModel)
@@ -61,17 +79,26 @@ class HeroimageElementController extends AbstractContentElementController
                     $figure->applyLegacyTemplateData($template, $model->imagemargin);
 
                     if (!empty($template->picture['img']['src'])) {
-                        $template->backgroundImage = "url('".$template->picture['img']['src']."')";
+                        $arrStyles[] = sprintf("background-image:url('%s');", $template->picture['img']['src']);
                     }
                 }
             }
         }
 
+        $template->backgroundStyle = '';
+
+        // Add the style attribute
+        if (!empty($arrStyles)) {
+            $template->backgroundStyle = sprintf(' style="%s"', implode(';', $arrStyles));
+        }
+
+        // Format text
         $heroImageText = nl2br($model->heroImageText);
         $heroImageText = $this->insertTagParser->replaceInline($heroImageText);
         $heroImageText = StringUtil::encodeEmail($heroImageText);
         $template->heroImageText = $heroImageText;
 
+        // Add the href
         $template->href = $this->insertTagParser->replaceInline($model->heroImageButtonJumpTo);
 
         return $template->getResponse();

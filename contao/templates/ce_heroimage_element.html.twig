@@ -1,0 +1,40 @@
+{% do addCssResource('bundles/markocupiccontaoheroimage/css/style.css|static') %}
+
+{% extends '@Contao/block_searchable' %}
+
+{% block content %}
+
+    <div class="heroimage-wrapper"{{ backgroundStyle|raw }}>
+        <div class="heroimage-background-overlay" data-opacity="{{ heroContentboxOpacity }}">
+            <div class="heroimage-content-box">
+
+                {% if heroImagePreline is not empty %}
+                    <div class="heroimage-preline-box">
+                        <h3 class="display-4">{{ heroImagePreline }}</h3>
+                    </div>
+                {% endif %}
+
+                {% if heroImageHeadline is not empty %}
+                    <div class="heroimage-headline-box">
+                        <h1 class="display-4">{{ heroImageHeadline }}</h1>
+                    </div>
+                {% endif %}
+
+                {% if heroImageText is not empty %}
+                    <div class="lead heroimage-text-box">
+                        {{ heroImageText|raw }}
+                    </div>
+                {% endif %}
+
+                {% if href is not empty and heroImageButtonText is not empty %}
+                    <div class="heroimage-button-box">
+                        <a href="{{ href }}" role="button" tabindex="0" aria-pressed="false" class="btn{{ heroImageButtonClass }}">
+                            {{ heroImageButtonText }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

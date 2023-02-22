@@ -18,7 +18,7 @@ use Markocupic\ContaoHeroimageBundle\Controller\ContentElement\HeroimageElementC
  * Content elements
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes'][HeroimageElementController::TYPE] = '
-{title_legend},name,type,heroImagePreline,heroImageHeadline;
+{type_legend},name,type,heroImagePreline,heroImageHeadline;
 {hero_image_legend:hide},addHeroImage;
 {template_legend:hide},customTpl;
 {text_legend},heroImageText;
@@ -36,7 +36,6 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'addHeroImage';
  * Add fields to tl_content
  */
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImagePreline'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImagePreline'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
@@ -45,7 +44,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImagePreline'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageHeadline'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImageHeadline'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
@@ -54,7 +52,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageHeadline'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageText'] = [
-    'label'       => &$GLOBALS['TL_LANG']['tl_content']['heroImageText'],
     'exclude'     => true,
     'search'      => true,
     'inputType'   => 'textarea',
@@ -64,7 +61,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageText'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['addHeroImage'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['addHeroImage'],
     'exclude'   => true,
     'inputType' => 'checkbox',
     'eval'      => ['submitOnChange' => true],
@@ -72,7 +68,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['addHeroImage'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonClass'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImageButtonClass'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
@@ -81,7 +76,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonClass'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonText'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImageButtonText'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
@@ -90,7 +84,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonText'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonJumpTo'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImageButtonJumpTo'],
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
@@ -102,7 +95,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonJumpTo'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageBackgroundColor'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroImageBackgroundColor'],
     'exclude'   => true,
     'inputType' => 'text',
     'eval'      => ['maxlength' => 6, 'colorpicker' => true, 'isHexColor' => true, 'decodeEntities' => true, 'tl_class' => 'w50 wizard'],
@@ -110,7 +102,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageBackgroundColor'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroContentboxTextAlign'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroContentboxTextAlign'],
     'exclude'   => true,
     'inputType' => 'select',
     'options'   => ['align-center', 'align-left', 'align-right'],
@@ -119,7 +110,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroContentboxTextAlign'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroContentboxOpacity'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_content']['heroContentboxOpacity'],
     'exclude'   => true,
     'inputType' => 'select',
     'options'   => ['0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'],
