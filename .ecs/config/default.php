@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of Contao Hero Image Bundle.
- *
- * (c) Marko Cupic 2023 <m.cupic@gmx.ch>
- * @license MIT
- * For the full copyright and license information,
- * please view the LICENSE file that was distributed with this source code.
- * @link https://github.com/markocupic/contao-heroimage-bundle
- */
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+return static function (ECSConfig $ECSConfig): void {
+    // Contao
+    $ECSConfig->import(__DIR__ . '../../../../../contao/easy-coding-standard/config/contao.php');
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(__DIR__.'/../../../../contao/easy-coding-standard/config/default.php');
-    $containerConfigurator->import(__DIR__.'/set/header_comment_fixer.php');
+    // Custom
+    $ECSConfig->import(__DIR__.'/set/header_comment_fixer.php');
+
+    // Custom
+    $ECSConfig->import(__DIR__.'/set/skip_configuration.php');
+
 };

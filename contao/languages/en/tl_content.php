@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Contao Hero Image Bundle.
  *
@@ -27,4 +29,3 @@ $GLOBALS['TL_LANG']['tl_content']['heroImageButtonJumpTo'] = ['Button redirect',
 $GLOBALS['TL_LANG']['tl_content']['heroImageBackgroundColor'] = ['Background color', 'Choose a background color.'];
 $GLOBALS['TL_LANG']['tl_content']['heroContentboxTextAlign'] = ['Content box text align', 'Choose an alignment.'];
 $GLOBALS['TL_LANG']['tl_content']['heroContentboxOpacity'] = ['Content box background opacity', 'Please choose a background opacity for the content box.'];
-

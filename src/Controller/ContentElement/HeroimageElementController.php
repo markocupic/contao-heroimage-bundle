@@ -15,15 +15,13 @@ declare(strict_types=1);
 namespace Markocupic\ContaoHeroimageBundle\Controller\ContentElement;
 
 use Contao\ContentModel;
-use Contao\Controller;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
-use Contao\CoreBundle\Framework\ContaoFramework;
+use Contao\CoreBundle\Image\Studio\Studio;
+use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Contao\FilesModel;
 use Contao\StringUtil;
 use Contao\Template;
-use Contao\Validator;
-use Markocupic\SacEventToolBundle\Controller\ContentElement\UserPortraitController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,41 +31,48 @@ class HeroimageElementController extends AbstractContentElementController
     public const TYPE = 'heroimage_element';
 
     public function __construct(
-        private readonly ContaoFramework $framework,
-        private string $projectDir,
-    ){
+        private readonly Studio $contaoImageStudio,
+        private readonly InsertTagParser $insertTagParser,
+        private readonly string $projectDir,
+    ) {
     }
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): ?Response
+    protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
     {
-        $hasValidImage = false;
+        $template->backgroundImage = 'none';
 
-        $objFile = FilesModel::findByUuid($model->singleSRC);
+        // Add an image as background-image
+        if ($model->addHeroImage) {
+            $objFile = FilesModel::findByUuid($model->singleSRC);
 
-        if (null !== $objFile) {
-            if (Validator::isUuid($model->singleSRC)) {
-                if (is_file($this->projectDir.'/'.$objFile->path)) {
-                    $hasValidImage = true;
-                    $model->singleSRC = $objFile->path;
+            if (null !== $objFile && is_file($this->projectDir.'/'.$objFile->path)) {
+                $objFilesModel = $objFile;
+
+                $figure = $this->contaoImageStudio
+                    ->createFigureBuilder()
+                    ->from($objFilesModel)
+                    ->setSize($model->size)
+                    ->setMetadata($model->getOverwriteMetadata())
+                    ->enableLightbox((bool) $model->fullsize)
+                    ->buildIfResourceExists()
+                ;
+
+                if (null !== $figure) {
+                    $figure->applyLegacyTemplateData($template, $model->imagemargin);
+
+                    if (!empty($template->picture['img']['src'])) {
+                        $template->backgroundImage = "url('".$template->picture['img']['src']."')";
+                    }
                 }
             }
         }
 
-        if ($hasValidImage) {
-            Controller::addImageToTemplate($template, $model->row(), null, null, $objFile);
-        }
-        $model->heroImageText = StringUtil::toHtml5($model->heroImageText);
+        $heroImageText = nl2br($model->heroImageText);
+        $heroImageText = $this->insertTagParser->replaceInline($heroImageText);
+        $heroImageText = StringUtil::encodeEmail($heroImageText);
+        $template->heroImageText = $heroImageText;
 
-        // Add image as background-image
-        $template->backgroundImage = 'none';
-
-        if ($model->addHeroImage) {
-            $template->backgroundImage = "url('".$template->picture['img']['src']."')";
-        }
-
-        $template->heroImageText = StringUtil::encodeEmail($model->heroImageText);
-
-        $template->href = Controller::replaceInsertTags($model->heroImageButtonJumpTo);
+        $template->href = $this->insertTagParser->replaceInline($model->heroImageButtonJumpTo);
 
         return $template->getResponse();
     }

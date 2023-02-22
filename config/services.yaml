@@ -5,7 +5,6 @@ services:
     bind:
       $projectDir: '%kernel.project_dir%'
 
-  Markocupic\ContaoHeroImageBundle\:
+  Markocupic\ContaoHeroimageBundle\:
     resource: ../src/
     exclude: ../src/{DependencyInjection}
-
