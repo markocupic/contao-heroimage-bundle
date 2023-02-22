@@ -28,9 +28,11 @@ class MarkocupicContaoHeroimageExtension extends Extension
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../src/config')
+            new FileLocator(__DIR__.'/../../config')
         );
 
         $loader->load('services.yaml');
     }
 }
+
+
