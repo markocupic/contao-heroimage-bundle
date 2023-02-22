@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $projectDir: '%kernel.project_dir%'
+
+  Markocupic\ContaoHeroImageBundle\:
+    resource: ../src/
+    exclude: ../src/{DependencyInjection}
+

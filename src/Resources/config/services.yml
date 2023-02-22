@@ -1,9 +1,0 @@
-services:
-    # Contao content element
-    Markocupic\ContaoHeroimageBundle\Controller\ContentElement\HeroimageElementController:
-        arguments:
-            - '@contao.framework'
-        tags:
-            - { name: contao.content_element, category: image_elements, template: ce_heroimage_element, type: heroimage_element }
-            - { name: container.service_subscriber }
-        public: true
