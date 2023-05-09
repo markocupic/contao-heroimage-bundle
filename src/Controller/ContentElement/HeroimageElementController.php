@@ -85,13 +85,13 @@ class HeroimageElementController extends AbstractContentElementController
         }
 
         // Format text
-        $heroImageText = nl2br($model->heroImageText);
+        $heroImageText = nl2br((string) $model->heroImageText);
         $heroImageText = $this->insertTagParser->replaceInline($heroImageText);
         $heroImageText = StringUtil::encodeEmail($heroImageText);
         $template->heroImageText = $heroImageText;
 
         // Add the href
-        $template->href = $this->insertTagParser->replaceInline($model->heroImageButtonJumpTo);
+        $template->href = $this->insertTagParser->replaceInline((string) $model->heroImageButtonJumpTo);
 
         return $template->getResponse();
     }
