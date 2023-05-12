@@ -12,13 +12,17 @@ declare(strict_types=1);
  * @link https://github.com/markocupic/contao-heroimage-bundle
  */
 
-// Legends
+/**
+ * Legends
+ */
 $GLOBALS['TL_LANG']['tl_content']['hero_image_button_legend'] = 'Button-settings';
 $GLOBALS['TL_LANG']['tl_content']['hero_image_legend'] = 'Hero image settings';
 $GLOBALS['TL_LANG']['tl_content']['hero_image_background_legend'] = 'Background settings';
 $GLOBALS['TL_LANG']['tl_content']['hero_content_box_legend'] = 'Content box-settings';
 
-// Fields
+/**
+ * Fields
+ */
 $GLOBALS['TL_LANG']['tl_content']['heroImagePreline'] = ['Preline', 'Insert a preline.'];
 $GLOBALS['TL_LANG']['tl_content']['heroImageHeadline'] = ['Headline', 'Insert a headline.'];
 $GLOBALS['TL_LANG']['tl_content']['heroImageText'] = ['Text', 'Add some text.'];

@@ -1,8 +1,8 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
+    _defaults:
+        autowire: true
+        autoconfigure: true
 
-  Markocupic\ContaoHeroimageBundle\:
-    resource: ../src/
-    exclude: ../src/{DependencyInjection}
+    Markocupic\ContaoHeroimageBundle\:
+        resource: ../src/
+        exclude: ../src/{DependencyInjection}

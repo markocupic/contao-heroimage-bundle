@@ -112,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroContentboxTextAlign'] = [
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroContentboxOpacity'] = [
     'exclude'   => true,
     'inputType' => 'select',
-    'options'   => ['0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'],
+    'options'   => array_map('strval', range(0, 1, 0.1)),
     'eval'      => ['tl_class' => 'w50 wizard'],
     'sql'       => "varchar(255) NOT NULL default ''",
 ];

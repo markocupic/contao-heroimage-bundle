@@ -17,6 +17,8 @@ namespace Markocupic\ContaoHeroimageBundle\Controller\ContentElement;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
+use Contao\CoreBundle\Framework\Adapter;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\Image\Studio\Studio;
 use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Contao\FilesModel;
@@ -30,10 +32,16 @@ class HeroimageElementController extends AbstractContentElementController
 {
     public const TYPE = 'heroimage_element';
 
+    protected Adapter $filesModel;
+    protected Adapter $stringUtil;
+
     public function __construct(
-        private readonly Studio $contaoImageStudio,
-        private readonly InsertTagParser $insertTagParser,
+        protected readonly ContaoFramework $framework,
+        protected readonly Studio $contaoImageStudio,
+        protected readonly InsertTagParser $insertTagParser,
     ) {
+        $this->filesModel = $this->framework->getAdapter(FilesModel::class);
+        $this->stringUtil = $this->framework->getAdapter(StringUtil::class);
     }
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
@@ -55,7 +63,7 @@ class HeroimageElementController extends AbstractContentElementController
         $template->backgroundImage = 'none';
 
         if ($model->addHeroImage) {
-            $objFilesModel = FilesModel::findByUuid($model->singleSRC);
+            $objFilesModel = $this->filesModel->findByUuid($model->singleSRC);
 
             if (null !== $objFilesModel && is_file($objFilesModel->getAbsolutePath())) {
                 $figure = $this->contaoImageStudio
@@ -85,10 +93,8 @@ class HeroimageElementController extends AbstractContentElementController
         }
 
         // Format text
-        $heroImageText = nl2br((string) $model->heroImageText);
-        $heroImageText = $this->insertTagParser->replaceInline($heroImageText);
-        $heroImageText = StringUtil::encodeEmail($heroImageText);
-        $template->heroImageText = $heroImageText;
+        $heroImageText = $this->insertTagParser->replaceInline((string) $model->heroImageText);
+        $template->heroImageText = $this->stringUtil->encodeEmail($heroImageText);
 
         // Add the href
         $template->href = $this->insertTagParser->replaceInline((string) $model->heroImageButtonJumpTo);

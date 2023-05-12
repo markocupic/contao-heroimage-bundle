@@ -1,6 +1,6 @@
 {
     "name": "markocupic/contao-heroimage-bundle",
-    "description": "Add a heroimage element to contao.",
+    "description": "Add a hero image element to the Contao frontend.",
     "keywords": [
         "contao",
         "bundle",
