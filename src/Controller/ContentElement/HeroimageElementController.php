@@ -47,10 +47,11 @@ class HeroimageElementController extends AbstractContentElementController
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
     {
         // Add the CSS classes
-        $template->class = implode(' ', array_filter(array_merge([$template->class ?? ''], [$model->heroContentboxTextAlign ?? ''])));
+        $template->class = implode(' ', array_filter(array_unique(array_merge([$template->class ?? ''], [$model->heroContentboxTextAlign ?? '']))));
 
         // Add the button classes
-        $template->heroImageButtonClass = !empty($model->heroImageButtonClass) ? ' '.trim($model->heroImageButtonClass) : '';
+        $heroImageButtonClass = implode(' ', array_filter(array_unique(explode(' ', $model->heroImageButtonClass ?? ''))));
+        $template->heroImageButtonClass = !empty($heroImageButtonClass) ? ' '.$heroImageButtonClass : '';
 
         // Add the background-styles
         $arrStyles = [];
@@ -96,7 +97,7 @@ class HeroimageElementController extends AbstractContentElementController
         $heroImageText = $this->insertTagParser->replaceInline((string) $model->heroImageText);
         $template->heroImageText = $this->stringUtil->encodeEmail($heroImageText);
 
-        // Add the href
+        // Add the href attribute
         $template->href = $this->insertTagParser->replaceInline((string) $model->heroImageButtonJumpTo);
 
         return $template->getResponse();
