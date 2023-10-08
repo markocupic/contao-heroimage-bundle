@@ -1,29 +1,24 @@
 {% do addCssResource('bundles/markocupiccontaoheroimage/css/style.css|static') %}
 <div class="{{ class|trim }} block">
-
     <div class="heroimage-wrapper"{{ backgroundStyle|raw }}>
         <div class="heroimage-background-overlay" data-opacity="{{ heroContentboxOpacity }}">
             <div class="heroimage-content-box">
-
-                {% if heroImagePreline is not empty %}
+                {% if heroImagePreline|default %}
                     <div class="heroimage-preline-box">
                         <h3 class="display-4">{{ heroImagePreline }}</h3>
                     </div>
                 {% endif %}
-
-                {% if heroImageHeadline is not empty %}
+                {% if heroImageHeadline|default %}
                     <div class="heroimage-headline-box">
                         <h1 class="display-4">{{ heroImageHeadline }}</h1>
                     </div>
                 {% endif %}
-
-                {% if heroImageText is not empty %}
+                {% if heroImageText|default %}
                     <div class="lead heroimage-text-box">
                         {{ heroImageText|raw|nl2br }}
                     </div>
                 {% endif %}
-
-                {% if href is not empty and heroImageButtonText is not empty %}
+                {% if href|default and heroImageButtonText|default %}
                     <div class="heroimage-button-box">
                         <a href="{{ href }}" role="button" tabindex="0" aria-pressed="false" class="btn{{ heroImageButtonClass }}">
                             {{ heroImageButtonText }}
