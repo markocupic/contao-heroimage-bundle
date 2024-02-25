@@ -44,7 +44,7 @@ class HeroimageElementController extends AbstractContentElementController
         $this->stringUtil = $this->framework->getAdapter(StringUtil::class);
     }
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response|null
+    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
         // Add the CSS classes
         $template->class = implode(' ', array_filter(array_unique(array_merge([$template->class ?? ''], [$model->heroContentboxTextAlign ?? '']))));
