@@ -87,11 +87,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageButtonJumpTo'] = [
     'exclude'   => true,
     'search'    => true,
     'inputType' => 'text',
-    'eval'      => ['mandatory' => true, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'fieldType' => 'radio', 'filesOnly' => true, 'tl_class' => 'w50 wizard'],
-    'wizard'    => [
-        ['tl_content', 'pagePicker'],
-    ],
-    'sql'       => "varchar(255) NOT NULL default ''",
+    'eval'      => ['mandatory' => true, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'dcaPicker' => true, 'tl_class' => 'w50'],
+    'sql'       => "text NULL",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['heroImageBackgroundColor'] = [
