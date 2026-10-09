@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Contao Hero Imag Bundle.
+ * This file is part of Contao Hero Image Bundle.
  *
  * (c) Marko Cupic 2024 <m.cupic@gmx.ch>
  * @license MIT
@@ -24,7 +24,7 @@ use Markocupic\ContaoHeroimageBundle\MarkocupicContaoHeroimageBundle;
 class PluginTest extends ContaoTestCase
 {
     /**
-     * Test Contao manager plugin class instantiation
+     * Test Contao manager plugin class instantiation.
      */
     public function testInstantiation(): void
     {
@@ -32,7 +32,7 @@ class PluginTest extends ContaoTestCase
     }
 
     /**
-     * Test returns the bundles
+     * Test returns the bundles.
      */
     public function testGetBundles(): void
     {
@@ -46,5 +46,4 @@ class PluginTest extends ContaoTestCase
         $this->assertSame(MarkocupicContaoHeroimageBundle::class, $bundles[0]->getName());
         $this->assertSame([ContaoCoreBundle::class], $bundles[0]->getLoadAfter());
     }
-
 }

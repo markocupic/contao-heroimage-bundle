@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Contao Hero Imag Bundle.
+ * This file is part of Contao Hero Image Bundle.
  *
  * (c) Marko Cupic 2024 <m.cupic@gmx.ch>
  * @license MIT
@@ -17,89 +17,83 @@ namespace Markocupic\ContaoHeroimageBundle\Controller\ContentElement;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
-use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\Image\Studio\Studio;
 use Contao\CoreBundle\InsertTag\InsertTagParser;
-use Contao\FilesModel;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\StringUtil;
-use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement(HeroimageElementController::TYPE, category: 'image_elements', template: 'ce_heroimage_element')]
+#[AsContentElement(HeroimageElementController::TYPE, category: 'image_elements', template: 'content_element/heroimage_element')]
 class HeroimageElementController extends AbstractContentElementController
 {
     public const TYPE = 'heroimage_element';
 
-    protected Adapter $filesModel;
-    protected Adapter $stringUtil;
-
     public function __construct(
-        protected readonly ContaoFramework $framework,
-        protected readonly Studio $contaoImageStudio,
-        protected readonly InsertTagParser $insertTagParser,
+        private readonly ContaoFramework $framework,
+        private readonly Studio $studio,
+        private readonly InsertTagParser $insertTagParser,
     ) {
-        $this->filesModel = $this->framework->getAdapter(FilesModel::class);
-        $this->stringUtil = $this->framework->getAdapter(StringUtil::class);
     }
 
-    protected function getResponse(Template $template, ContentModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        // Add the CSS classes
-        $template->class = implode(' ', array_filter(array_unique(array_merge([$template->class ?? ''], [$model->heroContentboxTextAlign ?? '']))));
+        $stringUtil = $this->framework->getAdapter(StringUtil::class);
 
-        // Add the button classes
-        $heroImageButtonClass = implode(' ', array_filter(array_unique(explode(' ', $model->heroImageButtonClass ?? ''))));
-        $template->heroImageButtonClass = !empty($heroImageButtonClass) ? ' '.$heroImageButtonClass : '';
+        // Text alignment of the content box (CSS class)
+        $template->set('text_align', (string) $model->heroContentboxTextAlign);
 
-        // Add the background-styles
-        $arrStyles = [];
+        // Content
+        $template->set('heroImagePreline', (string) $model->heroImagePreline);
+        $template->set('heroImageHeadline', (string) $model->heroImageHeadline);
+        $template->set('heroImageText', $stringUtil->encodeEmail($this->insertTagParser->replaceInline((string) $model->heroImageText)));
+        $template->set('heroContentboxOpacity', (string) $model->heroContentboxOpacity);
 
-        if (!empty($model->heroImageBackgroundColor)) {
-            $arrStyles[] = sprintf('background-color:#%s', $model->heroImageBackgroundColor);
+        // Button
+        $buttonClasses = array_filter(array_unique(explode(' ', (string) $model->heroImageButtonClass)));
+        $template->set('heroImageButtonText', (string) $model->heroImageButtonText);
+        $template->set('heroImageButtonClass', $buttonClasses ? ' '.implode(' ', $buttonClasses) : '');
+        $template->set('href', $this->insertTagParser->replaceInline((string) $model->heroImageButtonJumpTo));
+
+        // Background color and background image
+        $backgroundColor = $model->heroImageBackgroundColor ? '#'.$model->heroImageBackgroundColor : null;
+        $backgroundImage = $this->getBackgroundImageSrc($model);
+
+        $template->set('background_color', $backgroundColor);
+        $template->set('background_image', $backgroundImage);
+
+        $styles = [];
+
+        if (null !== $backgroundColor) {
+            $styles[] = 'background-color:'.$backgroundColor;
         }
 
-        // Add a background-image
-        $template->backgroundImage = 'none';
-
-        if ($model->addHeroImage) {
-            $objFilesModel = $this->filesModel->findByUuid($model->singleSRC);
-
-            if (null !== $objFilesModel && is_file($objFilesModel->getAbsolutePath())) {
-                $figure = $this->contaoImageStudio
-                    ->createFigureBuilder()
-                    ->from($objFilesModel)
-                    ->setSize($model->size)
-                    ->setMetadata($model->getOverwriteMetadata())
-                    ->enableLightbox((bool) $model->fullsize)
-                    ->buildIfResourceExists()
-                ;
-
-                if (null !== $figure) {
-                    $figure->applyLegacyTemplateData($template, $model->imagemargin);
-
-                    if (!empty($template->picture['img']['src'])) {
-                        $arrStyles[] = sprintf("background-image:url('%s');", $template->picture['img']['src']);
-                    }
-                }
-            }
+        if (null !== $backgroundImage) {
+            $styles[] = \sprintf("background-image:url('%s')", $backgroundImage);
         }
 
-        $template->backgroundStyle = '';
-
-        // Add the style attribute
-        if (!empty($arrStyles)) {
-            $template->backgroundStyle = sprintf(' style="%s"', implode(';', $arrStyles));
-        }
-
-        // Format text
-        $heroImageText = $this->insertTagParser->replaceInline((string) $model->heroImageText);
-        $template->heroImageText = $this->stringUtil->encodeEmail($heroImageText);
-
-        // Add the href attribute
-        $template->href = $this->insertTagParser->replaceInline((string) $model->heroImageButtonJumpTo);
+        // Kept for backwards compatibility with custom templates
+        $template->set('backgroundStyle', $styles ? \sprintf(' style="%s"', $stringUtil->specialcharsAttribute(implode(';', $styles))) : '');
 
         return $template->getResponse();
+    }
+
+    private function getBackgroundImageSrc(ContentModel $model): string|null
+    {
+        if (!$model->addHeroImage || !$model->singleSRC) {
+            return null;
+        }
+
+        $figure = $this->studio
+            ->createFigureBuilder()
+            ->fromUuid($model->singleSRC)
+            ->setSize($model->size)
+            ->buildIfResourceExists()
+        ;
+
+        $src = $figure?->getImage()->getImageSrc();
+
+        return $src ?: null;
     }
 }

@@ -22,20 +22,27 @@
     },
     "require": {
         "php": "^8.1",
-        "contao/core-bundle": "^4.13 || ^5.0",
-        "markocupic/contao-twig-assets": "^1.0"
+        "contao/core-bundle": "^5.3 || ^6.0",
+        "symfony/config": "^6.4 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-foundation": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0"
     },
     "require-dev": {
-        "contao/easy-coding-standard": "^5.0",
-        "contao/manager-bundle": "^4.13",
-        "contao/manager-plugin": "^2.3.1",
-        "contao/test-case": "^4.6",
-        "phpunit/phpunit": "^9.6",
-        "symfony/phpunit-bridge": "^v6.2"
+        "contao/manager-plugin": "^2.12",
+        "contao/test-case": "^5.3 || ^6.0"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "autoload": {
         "psr-4": {
             "Markocupic\\ContaoHeroimageBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Markocupic\\ContaoHeroimageBundle\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -43,11 +50,15 @@
     },
     "config": {
         "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "contao-components/installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "contao/manager-plugin": true,
-            "php-http/discovery": true
+            "contao-components/installer": false,
+            "contao/manager-plugin": false,
+            "php-http/discovery": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "scripts": {
+        "cs-fixer": "@php .ecs/vendor/bin/ecs check --config .ecs/config/default.php --fix --ansi",
+        "cs-check": "@php .ecs/vendor/bin/ecs check --config .ecs/config/default.php --ansi",
+        "unit-tests": "@php vendor/bin/phpunit --colors=always"
     }
 }
