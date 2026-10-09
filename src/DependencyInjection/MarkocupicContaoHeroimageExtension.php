@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Contao Hero Imag Bundle.
+ * This file is part of Contao Hero Image Bundle.
  *
  * (c) Marko Cupic 2024 <m.cupic@gmx.ch>
  * @license MIT
@@ -28,7 +28,7 @@ class MarkocupicContaoHeroimageExtension extends Extension
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../../config')
+            new FileLocator(__DIR__.'/../../config'),
         );
 
         $loader->load('services.yaml');

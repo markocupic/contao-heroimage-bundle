@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes'][HeroimageElementController::TYPE] =
 {template_legend:hide},customTpl;
 {text_legend},heroImageText;
 {hero_image_button_legend},heroImageButtonText,heroImageButtonClass,heroImageButtonJumpTo;
-{hero_image_background_legend:hide],heroImageBackgroundColor;
+{hero_image_background_legend:hide},heroImageBackgroundColor;
 {hero_content_box_legend},heroContentboxTextAlign,heroContentboxOpacity;
 {protected_legend:hide},protected;
 {expert_legend:hide},guests,cssID,space;

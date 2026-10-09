@@ -5,4 +5,7 @@ services:
 
     Markocupic\ContaoHeroimageBundle\:
         resource: ../src/
-        exclude: ../src/{DependencyInjection}
+        exclude:
+            - ../src/ContaoManager
+            - ../src/DependencyInjection
+            - ../src/MarkocupicContaoHeroimageBundle.php

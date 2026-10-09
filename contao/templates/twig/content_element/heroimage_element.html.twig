@@ -1,0 +1,69 @@
+{#
+    Hero image content element
+
+    Context:
+        text_align              CSS class for the text alignment (align-left, align-center, align-right)
+        heroImagePreline        Preline
+        heroImageHeadline       Headline
+        heroImageText           Text (HTML)
+        heroImageButtonText     Button text
+        heroImageButtonClass    Additional button classes (prefixed with a space)
+        href                    Button URL
+        heroContentboxOpacity   Opacity of the background overlay (0 - 1)
+        background_color        Background color (e.g. #ff0000) or null
+        background_image        Background image URL or null
+#}
+{% add "heroimage_element_css" to head %}
+    <link rel="stylesheet" href="{{ asset('css/style.css', 'markocupic_contao_heroimage') }}">
+{% endadd %}
+
+{% set background_styles = [] %}
+{% if background_color %}
+    {% set background_styles = background_styles|merge(['background-color:' ~ background_color]) %}
+{% endif %}
+{% if background_image %}
+    {% set background_styles = background_styles|merge(["background-image:url('" ~ background_image ~ "')"]) %}
+{% endif %}
+
+{% set wrapper_attributes = attrs()
+    .setIfExists('id', element_html_id|default)
+    .addClass(['ce_heroimage_element', 'block', element_css_classes|default, text_align])
+    .mergeWith(wrapper_attributes|default)
+%}
+
+{% set background_attributes = attrs()
+    .addClass('heroimage-wrapper')
+    .setIfExists('style', background_styles|join(';'))
+    .mergeWith(background_attributes|default)
+%}
+
+<div{{ wrapper_attributes }}>
+    <div{{ background_attributes }}>
+        <div class="heroimage-background-overlay" data-opacity="{{ heroContentboxOpacity }}">
+            <div class="heroimage-content-box">
+                {% block content %}
+                    {% if heroImagePreline %}
+                        <div class="heroimage-preline-box">
+                            <h3 class="display-4">{{ heroImagePreline }}</h3>
+                        </div>
+                    {% endif %}
+                    {% if heroImageHeadline %}
+                        <div class="heroimage-headline-box">
+                            <h1 class="display-4">{{ heroImageHeadline }}</h1>
+                        </div>
+                    {% endif %}
+                    {% if heroImageText %}
+                        <div class="lead heroimage-text-box">
+                            {{ heroImageText|raw|nl2br }}
+                        </div>
+                    {% endif %}
+                    {% if href and heroImageButtonText %}
+                        <div class="heroimage-button-box">
+                            <a href="{{ href }}" class="btn{{ heroImageButtonClass }}">{{ heroImageButtonText }}</a>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
